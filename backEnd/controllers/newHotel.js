@@ -1,8 +1,8 @@
-import Hotel from "../models/hotel";
+import hotel from "../models/hotel.js";
 
 //posting hotels to hoteldb;
 const newHotelModel=async (req,res)=>{
-   const  newHotel = new Hotel(req.body)
+   const  newHotel = new hotel(req.body)
     try{
        const savedHotel= await newHotel.save();
        res.status(200).json(savedHotel); 
