@@ -6,7 +6,7 @@ const getAllHotel= async (req,res,next)=>{
     try {
  
         if (dataAmount){
-           data= await hotel.find().limit(dataAmount)
+           data= await hotel.find().limit(Number(dataAmount))
            res.status(200).json(data)
            
         }else{
