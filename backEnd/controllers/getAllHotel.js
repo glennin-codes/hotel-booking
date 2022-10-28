@@ -14,8 +14,6 @@ const getAllHotel= async (req,res,next)=>{
             res.status(200).json(data)
 
         }
-           
-        res.status(200).json(getAll)
         
     } catch (err) {
        return next(err)

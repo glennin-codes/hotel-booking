@@ -1,4 +1,4 @@
-export const errorHandler = (err,req,res,next)=>{
+ const errorHandler = (err,req,res,next)=>{
     const errStatus=err.status || 500;
     const errMessage=err.message || "something went wrong engineers are working on it"
    return  res.status(errStatus).json({
@@ -9,3 +9,4 @@ export const errorHandler = (err,req,res,next)=>{
 
     })
 }
+export default errorHandler;
