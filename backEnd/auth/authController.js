@@ -3,8 +3,21 @@ import joi from "joi";
 import bcrypt from "bcrypt";
 
 
-const userModel= new user({
-  username:req.body.userModel,
-  email:req.body.email,
-  password:req.body.password
-})
+const register= async (req,res,next)=>{
+   try {
+    const newUSer= new user({
+        username:req.body.userModel,
+        email:req.body.email,
+        password:req.body.password
+    })
+    res.status(200).send(`created! user  ${username} succesfuly`)
+      await newUSer.save()
+
+    
+   } catch (err) {
+    next(err)
+   }
+   
+
+}
+export default register;
