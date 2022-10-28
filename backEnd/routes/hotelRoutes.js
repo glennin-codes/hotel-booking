@@ -7,7 +7,7 @@ import getHotel from "../controllers/getHotel.js";
 import getAllHotel from "../controllers/getAllHotel.js";
 
 router.route('/').post(newHotelModel)
-router.route(`/${dataAmoumnt}`).get(getAllHotel)//using routes
+router.route(`/dataAmount`).get(getAllHotel)//using routes
 router.route('/:hotelId').get(getHotel).patch(updateHotel).delete(deleteHotel)
 
 
