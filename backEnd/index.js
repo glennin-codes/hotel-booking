@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connect from "./db/config.js";
 const app =express();
+import authRouter from "./routes/authRoutes.js";
 import router from "./routes/hotelRoutes.js"
 import errorHandler from "./Errors/errorHandler.js"
 dotenv.config();
@@ -12,6 +13,7 @@ const port = 8000;
 app.use(cors());
 app.use(express.json()); 
 app.use("/api/hotelbooking",router)
+app.use("/api/auth",authRouter)
 app.use("/error",errorHandler)
 app.get('/',(req,res)=>{
     res.send("hii")

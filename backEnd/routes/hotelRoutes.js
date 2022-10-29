@@ -10,5 +10,4 @@ router.route('/').post(newHotelModel)
 router.route("/dataAmount").get(getAllHotel)//using routes
 router.route('/:hotelId').get(getHotel).patch(updateHotel).delete(deleteHotel)
 
-
 export default router;
