@@ -41,7 +41,7 @@ const hotelSchema= new mongoose.Schema({
     rating:{
       type:Number,
       min:0,
-      man:5
+      max:5
     },
     cheapestPrice:{
       type:Number,

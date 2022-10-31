@@ -35,7 +35,7 @@ import jwt from "jsonwebtoken";
       
       const {password,isAdmin,...otherDetails}=User._doc
        //passing in the cookie
-      res.cookie("acces_token",token,{
+      res.cookie("access_token",token,{
          httpOnly:true
       }).status(200).send({...otherDetails})
 
