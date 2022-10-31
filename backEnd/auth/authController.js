@@ -2,6 +2,8 @@ import user from "../models/user.js";
 import joi from "joi";
 import bcrypt from "bcrypt";
 import createError from "../Errors/createError.js";
+import jwt from "jsonwebtoken";
+
 
   export const register= async (req,res,next)=>{
    try { 
@@ -18,22 +20,29 @@ import createError from "../Errors/createError.js";
     next(err)
    }
    
-
 }
-
 
   export const login = async (req,res,next)=>{
    try {
       const User = await user.findOne({email:req.body.email})
-      if(!User)return next(createError(404,"User not found with the such email"))
-      const isPasswordCorrect=await bcrypt.compare(req.body.password,User.password)
-      if(!isPasswordCorrect) return(400,"wrong password or Email")
-      res.status(200).send(User)
+      if(!User) return next(createError(404,"User not found with the such email"))
+      const isPasswordCorrect = await bcrypt.compare(req.body.password,User.password)
+      if(!isPasswordCorrect) return next( createError(400,"wrong password or Email"))
+      
+      //jwt
+      const token=jwt.sign({id:User._id,isAdmin:User.isAdmin},process.env.JWT);
+
+      
+      const {password,isAdmin,...otherDetails}=User._doc
+       //passing in the cookie
+      res.cookie("acces_token",token,{
+         httpOnly:true
+      }).status(200).send({...otherDetails})
+
    } catch (err) {
       next(err)
    }
 }
-
 
 
 

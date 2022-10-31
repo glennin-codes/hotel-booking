@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import cookie from "cookie-parser"
 import connect from "./db/config.js";
 const app =express();
 import regRouter from "./routes/usersRoutes.js";
@@ -10,9 +11,11 @@ import createError from "./Errors/createError.js"
 dotenv.config();
 const port = 8000;
 
-
+//middleware
+app.use(cookie());
 app.use(cors());
 app.use(express.json()); 
+
 app.use("/api/hotelbooking",router)
 app.use("/api/auth",regRouter)
 app.use(errorHandler)
