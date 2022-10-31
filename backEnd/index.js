@@ -4,7 +4,8 @@ import cors from "cors";
 import cookie from "cookie-parser"
 import connect from "./db/config.js";
 const app =express();
-import regRouter from "./routes/usersRoutes.js";
+import authRouter from "./routes/authRoutes.js";
+import userRouter from "./routes/userRoutes.js";
 import router from "./routes/hotelRoutes.js"
 import errorHandler from "./Errors/errorHandler.js"
 import createError from "./Errors/createError.js"
@@ -17,7 +18,8 @@ app.use(cors());
 app.use(express.json()); 
 
 app.use("/api/hotelbooking",router)
-app.use("/api/auth",regRouter)
+app.use("/api/auth",authRouter)
+app.use("/api/users",userRouter);
 app.use(errorHandler)
 app.use(createError)
 app.get('/',(req,res)=>{
