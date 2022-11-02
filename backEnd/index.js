@@ -21,7 +21,7 @@ app.use("/api/hotelbooking",router)
 app.use("/api/auth",authRouter)
 app.use("/api/users",userRouter);
 app.use(errorHandler)
-// app.use(createError)
+app.use(createError)
 app.get('/',(req,res)=>{
     res.send("hii")
 })
